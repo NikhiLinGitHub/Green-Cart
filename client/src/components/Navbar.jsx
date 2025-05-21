@@ -1,16 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { assets } from '../assets/assets'
 import { useAppContext } from '../context/AppContext'
 
 const Navbar = () => {
     const [open, setOpen] = React.useState(false)
-    const {user, setUser, setShowUserLogin} = useAppContext();
+    const {user, setUser, setShowUserLogin, navigate, setSearchQuery, searchQuery} = useAppContext();
 
     const logout = async ()=>{
         setUser(null);
-        Navigate('/')
+        navigate('/')
     }
+
+    useEffect(() => {
+        if (searchQuery.length > 0) {
+            navigate("/products")
+        }
+    }, [searchQuery])
 
   return (
     <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all">
@@ -35,7 +41,8 @@ const Navbar = () => {
                     <button className="absolute -top-2 -right-3 text-xs text-white bg-primary w-[18px] h-[18px] rounded-full">3</button>
                 </div>
 
-                {!user ? ( <button onClick={() => setShowUserLogin(true)} className="cursor-pointer px-8 py-2 bg-primary hover:bg-primary-dull transition text-white rounded-full">
+                {!user ? ( 
+                    <button onClick={() => setShowUserLogin(false)} className="cursor-pointer px-8 py-2 bg-primary hover:bg-primary-dull transition text-white rounded-full">
                     Login
                 </button>) 
                 :
