@@ -61,7 +61,7 @@ export const AppContextProvider = ({children})=> {
         fetchProducts()
     },[])
 
-    const value = {navigate, user, setUser, setIsSeller, isSeller, showUserLogin, setShowUserLogin, setShowUserLogin, products, currency, addToCart, updateCartItem, removeFromCart, cartItems, searchQuery, setSearchQuery
+    const value = {navigate, user, setUser, setIsSeller, isSeller, showUserLogin, setShowUserLogin, products, currency, addToCart, updateCartItem, removeFromCart, cartItems, searchQuery, setSearchQuery
     }
 
     return <AppContext.Provider value={value}>
